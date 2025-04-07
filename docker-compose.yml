@@ -1,0 +1,10 @@
+services:
+  gophish:
+    image: gophish/gophish
+    container_name: gophish
+    ports:
+      - "3333:3333"   # Admin UI
+      - "80:80"       # Phishing landing pages
+    volumes:
+      - ./gophish-data:/opt/gophish/data
+    restart: unless-stopped
