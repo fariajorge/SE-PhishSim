@@ -1,10 +1,24 @@
+version: '3.8'
+
 services:
   gophish:
     image: gophish/gophish
     container_name: gophish
     ports:
-      - "3333:3333"   # Admin UI
-      - "80:80"       # Phishing landing pages
+      - "3333:3333"       # Admin panel inside Docker
     volumes:
       - ./gophish-data:/opt/gophish/data
+    restart: unless-stopped
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - gophish
     restart: unless-stopped
