@@ -14,19 +14,19 @@ This repository documents the planning, deployment, and analysis of an internal 
 
 ## 🧪 Project Summary
 
-The campaign used a spoofed domain (`noti0n.com`) and a custom-designed Notion-themed login page. Participants received an email that mimicked a standard team invitation. The infrastructure was deployed via Docker using the GoPhish framework, and Cloudflare Tunnel was used to expose the campaign infrastructure securely to the internet.
+The campaign used a spoofed domain (`noti0n.com`) and a custom-designed Notion-themed login page. Participants received an email that mimicked a standard team invitation. The infrastructure was deployed via Docker using the GoPhish framework, secured with a custom NGINX reverse proxy providing HTTPS, and exposed to the internet through public IP and router port forwarding.
 
 Collected metrics such as click-through rate, submission rate, and report rate were used to assess susceptibility. A post-campaign debrief and awareness training were designed based on participant performance.
 
 ## 💡 Key Features
 
-- **Custom Domain & Realistic Branding**: `noti0n.com` registered and configured to host the phishing page
-- **GoPhish Deployment**: Managed campaign through GoPhish via Docker and cloud tunneling
-- **Landing Page Simulation**: Replica Notion login page with credential capture and redirect
-- **Email Template Design**: Simulated Notion invitation email with embedded tracking
-- **Data-Driven Analysis**: Collection of behavioral metrics with post-campaign visual analytics
+- **Custom Domain & Realistic Branding**: `noti0n.com` registered and configured with proper DNS records
+- **GoPhish Deployment via Docker**: Full containerized setup with GoPhish + NGINX for HTTPS termination
+- **Landing Page Simulation**: Replica Notion login page hosted and tracked via GoPhish
+- **Email Template Design**: Simulated Notion invitation email with embedded tracking links
+- **Data Persistence**: Campaign data and settings persisted across server restarts
+- **Data-Driven Analysis**: Collection of behavioral metrics with post-campaign analysis
 - **Awareness Training Material**: Custom posters, quizzes, and debrief documents (post-campaign)
-
 
 ## 🛠️ Tech Stack
 
@@ -34,7 +34,7 @@ Collected metrics such as click-through rate, submission rate, and report rate w
 |---------------------|-------------------------------------|
 | GoPhish             | Phishing campaign framework         |
 | Docker              | Local environment & deployment      |
-| Cloudflare Tunnel   | Exposing campaign securely online   |
+| NGINX               | HTTPS reverse proxy for admin and landing pages |
 | HTML/CSS            | Email & landing page customization  |
 | GitHub              | Documentation & version control     |
 
@@ -47,6 +47,7 @@ This simulation was conducted strictly with prior informed consent from all part
 This project demonstrates the ability to:
 - Design and run full-stack phishing simulations
 - Develop realistic phishing infrastructure
+- Configure secure internet-facing servers
 - Analyze human behavioral data in a security context
 - Produce actionable awareness and training materials based on findings
 
