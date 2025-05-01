@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>System Compromised</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
       background-color: black;
-      color: red;
+      color: black;
       font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
+      transition: color 2s ease;
     }
     h1 {
       font-size: 40px;
       margin-bottom: 20px;
+      transition: color 2s ease;
     }
     p {
       font-size: 20px;
-      line-height: 1.6;
       max-width: 600px;
+      text-align: center;
+      transition: color 2s ease;
     }
     .button {
       margin-top: 40px;
+      display: none;
     }
     .button a {
       display: inline-block;
-      padding: 12px 24px;
+      padding: 14px 28px;
       background-color: red;
       color: black;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 18px;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 18px;
+      transition: background-color 0.3s;
     }
     .button a:hover {
       background-color: darkred;
@@ -47,14 +53,43 @@
 </head>
 <body>
 
-  <h1>🚨 SYSTEM BREACH DETECTED 🚨</h1>
-  <p>Your login credentials have been successfully captured.</p>
-  <p>All your account information is now being accessed and extracted.</p>
-  <p>Your digital identity is no longer secure.</p>
+  <h1 id="headline">System Breach Detected</h1>
+  <p id="text">Your credentials have been captured. Data is being extracted...</p>
 
-  <div class="button">
-    <a href="/">FIX MY PROBLEM</a>
+  <div class="button" id="button">
+    <a href="/">💲 Get My Data Back</a>
   </div>
 
+  <script>
+    // Fade text color to red
+    setTimeout(() => {
+      document.body.style.color = 'red';
+    }, 1000);
+
+    // Scary message sequence
+    const messages = [
+      'Decrypting sensitive data...',
+      'Uploading files to external server...',
+      'Tracking your location...',
+      'Accessing camera...',
+      'System lockdown initiated...'
+    ];
+
+    let i = 0;
+    const textEl = document.getElementById('text');
+    const btn = document.getElementById('button');
+
+    function showNextMessage() {
+      if (i < messages.length) {
+        textEl.textContent = messages[i];
+        i++;
+        setTimeout(showNextMessage, 3000);
+      } else {
+        btn.style.display = 'block';
+      }
+    }
+
+    setTimeout(showNextMessage, 3000);
+  </script>
 </body>
 </html>
